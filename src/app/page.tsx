@@ -1,5 +1,13 @@
+import { Suspense } from "react";
+import Marquee from "./components/Marquee";
+
 export default function Home() {
   return (
-    <div>Hello Bazer Dor</div>
+    <>
+      <Suspense fallback={null}>
+        <Marquee />
+      </Suspense>
+      <div>Home</div>
+    </>
   );
 }
