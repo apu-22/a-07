@@ -1,23 +1,9 @@
 import MarqueeText from "react-marquee-text";
 import "react-marquee-text/dist/styles.css";
+import { Product } from "@/types/product";
 
-interface Product {
-    id: number;
-    slug: string;
-    nameBn: string;
-    category: string;
-    categoryNameBn: string;
-    categoryIcon: string;
-    unit: string;
-    image: string;
-    today: number;
-    yesterday: number;
-    lastWeek: number;
-    lastMonth: number;
-    change: {
-        dir: "up" | "down" | "flat";
-        pct: number;
-    };
+interface MarqueeProps {
+    products: Product[];
 }
 
 const units: Record<string, string> = {
@@ -27,23 +13,13 @@ const units: Record<string, string> = {
     piece: "টি",
 };
 
-const Marquee = async () => {
-    let data: Product[] = [];
-    try {
-        const res = await fetch("https://api.api-store.workers.dev/api/bazardor/products", {
-            cache: "force-cache",
-        });
-        if (res.ok) {
-            data = await res.json();
-        }
-    } catch (error) {
-        console.error("Failed to fetch products:", error);
-    }
+const Marquee = ({ products }: MarqueeProps) => {
+    if (!products || products.length === 0) return null;
 
     return (
         <div className="w-full bg-[#fdfdfd] border-b border-gray-200 overflow-hidden py-0.5">
             <MarqueeText direction="right" duration={10} pauseOnHover={true} textSpacing="0px">
-                {data.map((item, idx) => (
+                {products.map((item, idx) => (
                     <div
                         key={idx}
                         className="inline-flex items-center gap-2 px-4 py-2 border-r border-gray-200 text-xs sm:text-sm whitespace-nowrap select-none"
