@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import Marquee from "./components/Marquee";
 import Banner from "./components/Banner";
 import IncreasePriceToday from "./components/IncreasePriceToday";
+import DecreasePriceToday from "./components/DecreasePriceToday";
 import { Product } from "@/types/product";
 
 export default async function Home() {
@@ -27,6 +28,7 @@ export default async function Home() {
 
       <Suspense fallback={<h1>loading...</h1>}>
         <IncreasePriceToday products={products} />
+        <DecreasePriceToday products={products} />
       </Suspense>
     </>
   );
