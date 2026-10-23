@@ -60,7 +60,7 @@ const DecreasePriceToday = ({ products }: DecreasePriceTodayProps) => {
                                 </div>
 
                                 <div className="inline-flex items-center gap-1 bg-green-50 text-green-600 font-bold text-xs px-2.5 py-1 rounded-lg shrink-0">
-                                    <span>▲</span>
+                                    <span>▼</span>
                                     <span>
                                         {Math.abs(item.change.pct).toLocaleString("bn-BD", {
                                             minimumFractionDigits: 1,
