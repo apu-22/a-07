@@ -2,7 +2,11 @@
 
 import { useEffect, useState } from "react";
 
-export default function CurrentDate() {
+interface CurrentDateProps {
+    className?: string;
+}
+
+export default function CurrentDate({ className }: CurrentDateProps) {
     const [date, setDate] = useState<string>("");
 
     useEffect(() => {
@@ -14,8 +18,8 @@ export default function CurrentDate() {
     }, []);
 
     return (
-        <p className="text-xs text-gray-500 font-medium leading-tight mt-0.5 min-h-[16px]">
+        <span className={className || "text-xs text-gray-500 font-medium leading-tight mt-0.5 min-h-[16px]"}>
             {date}
-        </p>
+        </span>
     );
 }
