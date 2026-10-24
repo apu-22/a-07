@@ -2,6 +2,8 @@
 
 A modern and intuitive web application to track, monitor, and compare daily grocery and commodity prices across local markets in Bangladesh.
 
+🌐 **Live Demo:** [https://a-07-alpha.vercel.app](https://a-07-alpha.vercel.app/)
+
 ---
 
 ## 🛠️ Technologies Used
