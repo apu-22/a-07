@@ -2,6 +2,8 @@ import Link from "next/link";
 import { Product } from "@/types/product";
 import CategoryProductsList from "./CategoryProductsList";
 
+export const instant = false;
+
 interface CategoryPageProps {
     params: Promise<{ categoryID: string }>;
 }

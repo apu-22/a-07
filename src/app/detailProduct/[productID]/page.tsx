@@ -1,5 +1,8 @@
 import Link from "next/link";
 import { Product } from "@/types/product";
+import { notFound } from "next/navigation";
+
+export const instant = false;
 
 interface DetailProductPageProps {
     params: Promise<{ productID: string }>;
@@ -20,7 +23,16 @@ export default async function DetailProductPage({ params }: DetailProductPagePro
         `https://api.api-store.workers.dev/api/bazardor/products/${productID}`,
         { cache: "force-cache" }
     );
+
+    if (!res.ok) {
+        notFound();
+    }
+
     const product: Product = await res.json();
+
+    if (!product || !product.id) {
+        notFound();
+    }
 
     const unitText = units[product.unit] || product.unit;
     const markets = product.markets || [];
