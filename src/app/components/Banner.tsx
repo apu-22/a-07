@@ -21,12 +21,12 @@ const Banner = () => {
                         </p>
 
                         <div className="mt-6">
-                            <Link
-                                href="#products"
-                                className="btn btn-success text-white rounded-xl px-6 py-2.5 shadow-sm hover:shadow transition-all font-medium text-sm sm:text-base"
+                            <a
+                                href="#সব-পণ্য"
+                                className="btn btn-success text-white rounded-xl px-6 py-2.5 shadow-sm hover:shadow transition-all font-medium text-sm sm:text-base inline-flex items-center"
                             >
                                 সব পণ্য দেখুন
-                            </Link>
+                            </a>
                         </div>
                     </div>
 

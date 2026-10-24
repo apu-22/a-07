@@ -16,7 +16,7 @@ const AllProducts = ({ products }: AllProductsProps) => {
     if (!products || products.length === 0) return null;
 
     return (
-        <section id="products" className="w-full bg-[#f8faf8] pb-14 sm:pb-20">
+        <section id="সব-পণ্য" className="w-full bg-[#f8faf8] pb-14 sm:pb-20 scroll-mt-6">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="mb-6">
                     <h2 className="text-xl sm:text-2xl font-bold text-gray-900 tracking-tight">
