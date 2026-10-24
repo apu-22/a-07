@@ -34,14 +34,14 @@ export default function Navbar() {
                         {/* Auth Actions */}
                         <div className="flex items-center gap-2">
                             <Link
-                                href="/signin"
+                                href="/sign-in"
                                 className="btn btn-ghost btn-sm"
                             >
                                 সাইন ইন
                             </Link>
 
                             <Link
-                                href="/signup"
+                                href="/sign-up"
                                 className="btn btn-success btn-sm text-white"
                             >
                                 সাইন আপ

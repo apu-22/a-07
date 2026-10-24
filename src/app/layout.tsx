@@ -3,9 +3,10 @@ import { Noto_Serif_Bengali } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import { Toaster } from "react-hot-toast";
 
 const notoSerifBengali = Noto_Serif_Bengali({
-  subsets: ["latin","bengali"],
+  subsets: ["latin", "bengali"],
 });
 
 export const metadata: Metadata = {
@@ -21,15 +22,16 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${notoSerifBengali.className} h-full antialiased scroll-smooth`}
     >
       <body className="min-h-full flex flex-col">
-        <Navbar/>
+        <Navbar />
 
+        <Toaster />
         <main className="flex-1">
           {children}
         </main>
 
-        <Footer/>
+        <Footer />
 
-        </body>
+      </body>
     </html>
   );
 }
