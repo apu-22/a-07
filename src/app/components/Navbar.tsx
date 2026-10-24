@@ -4,6 +4,7 @@ import Link from "next/link";
 import NavLinks from "./Navlinks";
 import CurrentDate from "./CurrentDate";
 import Marquee from "./Marquee";
+import UserInfo from "./UserInfo";
 
 export default function Navbar() {
     return (
@@ -31,22 +32,7 @@ export default function Navbar() {
                             </div>
                         </Link>
 
-                        {/* Auth Actions */}
-                        <div className="flex items-center gap-2">
-                            <Link
-                                href="/sign-in"
-                                className="btn btn-ghost btn-sm"
-                            >
-                                সাইন ইন
-                            </Link>
-
-                            <Link
-                                href="/sign-up"
-                                className="btn btn-success btn-sm text-white"
-                            >
-                                সাইন আপ
-                            </Link>
-                        </div>
+                        <UserInfo />
                     </div>
                 </div>
             </header>
