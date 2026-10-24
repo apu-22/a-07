@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import NavLinks from "./Navlinks";
 import CurrentDate from "./CurrentDate";
+import Marquee from "./Marquee";
 
 export default function Navbar() {
     return (
@@ -49,8 +50,13 @@ export default function Navbar() {
                     </div>
                 </div>
             </header>
+
             <Suspense fallback={null}>
                 <NavLinks />
+            </Suspense>
+
+            <Suspense fallback={null}>
+                <Marquee />
             </Suspense>
         </>
     );

@@ -3,7 +3,7 @@ import "react-marquee-text/dist/styles.css";
 import { Product } from "@/types/product";
 
 interface MarqueeProps {
-    products: Product[];
+    products?: Product[];
 }
 
 const units: Record<string, string> = {
@@ -13,13 +13,28 @@ const units: Record<string, string> = {
     piece: "টি",
 };
 
-const Marquee = ({ products }: MarqueeProps) => {
-    if (!products || products.length === 0) return null;
+const Marquee = async ({ products }: MarqueeProps = {}) => {
+    let list = products;
+
+    if (!list || list.length === 0) {
+        try {
+            const res = await fetch("https://api.api-store.workers.dev/api/bazardor/products", {
+                cache: "force-cache",
+            });
+            if (res.ok) {
+                list = await res.json();
+            }
+        } catch (error) {
+            console.error("Failed to fetch products for marquee:", error);
+        }
+    }
+
+    if (!list || list.length === 0) return null;
 
     return (
         <div className="w-full bg-[#fdfdfd] border-b border-gray-200 overflow-hidden py-0.5">
             <MarqueeText direction="right" duration={10} pauseOnHover={true} textSpacing="0px">
-                {products.map((item, idx) => (
+                {list.map((item, idx) => (
                     <div
                         key={idx}
                         className="inline-flex items-center gap-2 px-4 py-2 border-r border-gray-200 text-xs sm:text-sm whitespace-nowrap select-none"
@@ -33,7 +48,7 @@ const Marquee = ({ products }: MarqueeProps) => {
                         </span>
 
                         <span className="text-gray-600 font-medium">
-                            ৳{item.today.toLocaleString("bn-BD")} টাকা/{units[item.unit] || item.unit}
+                            {item.today.toLocaleString("bn-BD")} টাকা/{units[item.unit] || item.unit}
                         </span>
 
                         {item.change?.dir === "up" && (
@@ -62,4 +77,3 @@ const Marquee = ({ products }: MarqueeProps) => {
 };
 
 export default Marquee;
-
