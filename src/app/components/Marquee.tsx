@@ -1,6 +1,7 @@
 import MarqueeText from "react-marquee-text";
 import "react-marquee-text/dist/styles.css";
 import { Product } from "@/types/product";
+import Link from "next/link";
 
 interface MarqueeProps {
     products?: Product[];
@@ -35,7 +36,8 @@ const Marquee = async ({ products }: MarqueeProps = {}) => {
         <div className="w-full bg-[#fdfdfd] border-b border-gray-200 overflow-hidden py-0.5">
             <MarqueeText direction="right" duration={10} pauseOnHover={true} textSpacing="0px">
                 {list.map((item, idx) => (
-                    <div
+                    <Link
+                        href={`/detailProduct/${item.id}`}
                         key={idx}
                         className="inline-flex items-center gap-2 px-4 py-2 border-r border-gray-200 text-xs sm:text-sm whitespace-nowrap select-none"
                     >
@@ -69,7 +71,7 @@ const Marquee = async ({ products }: MarqueeProps = {}) => {
                                 <span>{Math.abs(item.change.pct).toLocaleString("bn-BD")}%</span>
                             </span>
                         )}
-                    </div>
+                    </Link>
                 ))}
             </MarqueeText>
         </div>

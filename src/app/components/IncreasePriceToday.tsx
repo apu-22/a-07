@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Product } from "@/types/product";
 
 interface IncreasePriceTodayProps {
@@ -13,7 +14,7 @@ const units: Record<string, string> = {
 };
 
 const IncreasePriceToday = ({ products }: IncreasePriceTodayProps) => {
-    //filter products whre direct up
+    //filter products where direct up
     const increasedProducts = products
         ?.filter((item) => item.change?.dir === "up")
         .sort((a, b) => Math.abs(b.change.pct) - Math.abs(a.change.pct))
@@ -33,43 +34,46 @@ const IncreasePriceToday = ({ products }: IncreasePriceTodayProps) => {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                     {increasedProducts.map((item) => (
-                        <div
+                        <Link
                             key={item.id}
-                            className="bg-white rounded-2xl border border-gray-100 shadow-[0_1px_4px_rgba(0,0,0,0.02)] p-4 sm:p-5 flex flex-col justify-between hover:shadow-md transition-shadow"
+                            href={`/detailProduct/${item.id}`}
+                            className="block group"
                         >
-                            <div className="flex items-center gap-3">
-                                <div className="w-11 h-11 rounded-xl bg-gray-50 flex items-center justify-center text-xl shrink-0">
-                                    {item.image}
-                                </div>
-                                <div className="flex flex-col">
-                                    <h3 className="font-bold text-gray-900 text-base leading-snug">
-                                        {item.nameBn}
-                                    </h3>
-                                    <p className="text-xs text-gray-400 mt-0.5">
-                                        প্রতি {units[item.unit] || item.unit}
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div className="mt-5 pt-3 border-t border-gray-50 flex items-end justify-between">
-                                <div className="flex flex-col">
-                                    <span className="text-[11px] text-gray-400">আজকের দাম</span>
-                                    <span className="text-lg font-bold text-gray-900 leading-tight mt-0.5">
-                                        {item.today.toLocaleString("bn-BD")} টাকা
-                                    </span>
+                            <div className="bg-white rounded-2xl border border-gray-100 shadow-[0_1px_4px_rgba(0,0,0,0.02)] p-4 sm:p-5 flex flex-col justify-between hover:shadow-md transition-shadow h-full">
+                                <div className="flex items-center gap-3">
+                                    <div className="w-11 h-11 rounded-xl bg-gray-50 flex items-center justify-center text-xl shrink-0 group-hover:scale-105 transition-transform">
+                                        {item.image || item.categoryIcon || "🛒"}
+                                    </div>
+                                    <div className="flex flex-col">
+                                        <h3 className="font-bold text-gray-900 text-base leading-snug group-hover:text-[#058b42] transition-colors">
+                                            {item.nameBn}
+                                        </h3>
+                                        <p className="text-xs text-gray-400 mt-0.5">
+                                            প্রতি {units[item.unit] || item.unit}
+                                        </p>
+                                    </div>
                                 </div>
 
-                                <div className="inline-flex items-center gap-1 bg-red-50 text-red-600 font-bold text-xs px-2.5 py-1 rounded-lg shrink-0">
-                                    <span>▲</span>
-                                    <span>
-                                        {Math.abs(item.change.pct).toLocaleString("bn-BD", {
-                                            minimumFractionDigits: 1,
-                                            maximumFractionDigits: 1,
-                                        })}%
-                                    </span>
+                                <div className="mt-5 pt-3 border-t border-gray-50 flex items-end justify-between">
+                                    <div className="flex flex-col">
+                                        <span className="text-[11px] text-gray-400">আজকের দাম</span>
+                                        <span className="text-lg font-bold text-gray-900 leading-tight mt-0.5">
+                                            {item.today.toLocaleString("bn-BD")} টাকা
+                                        </span>
+                                    </div>
+
+                                    <div className="inline-flex items-center gap-1 bg-red-50 text-red-600 font-bold text-xs px-2.5 py-1 rounded-lg shrink-0">
+                                        <span>▲</span>
+                                        <span>
+                                            {Math.abs(item.change.pct).toLocaleString("bn-BD", {
+                                                minimumFractionDigits: 1,
+                                                maximumFractionDigits: 1,
+                                            })}%
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </Link>
                     ))}
                 </div>
             </div>
